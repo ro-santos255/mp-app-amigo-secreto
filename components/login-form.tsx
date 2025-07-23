@@ -1,5 +1,6 @@
 "use client";
 
+import { useActionState } from "react";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -10,8 +11,16 @@ import {
 } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { login } from "@/app/(auth)/login/actions";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { Loader, MessageCircle } from "lucide-react";
 
 export default function LoginForm() {
+  const [state, formAction, pending] = useActionState<any, FormData>(login, {
+    success: null,
+    message: "",
+  });
+
   return (
     <Card className="mx-auto w-full max-w-sm p-4">
       <CardHeader>
@@ -21,7 +30,7 @@ export default function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action="">
+        <form action={formAction}>
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -33,7 +42,31 @@ export default function LoginForm() {
                 required
               ></Input>
             </div>
+            {state.success === true && (
+              <Alert className="text-muted-foreground">
+                <MessageCircle className="h-4 w-4 !text-green-600" />
+                <AlertTitle className="text-gray-50">
+                  E-mail enviado!
+                </AlertTitle>
+                <AlertDescription>
+                  Confira sua caixa de e-mail para acessar o link de login.
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {state.success === false && (
+              <Alert className="text-muted-foreground">
+                <MessageCircle className="h-4 w-4 !text-red-600" />
+                <AlertTitle className="text-gray-50">
+                  Erro!
+                </AlertTitle>
+                <AlertDescription>
+                 Ocorreu um erro ao enviar um link de login, por favor, entre em contato com o suporte!
+                </AlertDescription>
+              </Alert>
+            )}
             <Button type="submit" className="w-full">
+              {pending && <Loader className="animate-spin" />}  
               Login
             </Button>
           </div>
