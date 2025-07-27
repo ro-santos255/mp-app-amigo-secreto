@@ -40,14 +40,11 @@ export default function NewGroupForm({
     message: "",
   });
 
-	  useEffect(() => {
-		if (state.success === false) {
-			toast({
-				variant: "destructive",
-				description: state.message || "Erro ao criar grupo",
-			})
-		}
-	}, [state]);
+  useEffect(() => {
+    if (state.success === false) {
+      toast.error(state.message);
+    }
+  }, [state]);
 
   function updateParticipant(
     index: number,
