@@ -87,10 +87,6 @@ type Participant = {
 }
 
 function drawGroup(participants: Participant[]) {
-	// Implement the logic to draw participants here
-	// This function should return the drawn participants
-	// For now, we will return a placeholder
-
 	const selectedParticipants: string[] = [];
 
 	return participants.map((participant) => {
@@ -99,9 +95,7 @@ function drawGroup(participants: Participant[]) {
 		);
 
 		const assignedParticipant = availableParticipants[Math.floor(Math.random() * availableParticipants.length)]; 
-		selectedParticipants.push(assignedParticipant.id);
-		console.log(assignedParticipant.id);
-		
+		selectedParticipants.push(assignedParticipant.id);	
 
 		return {
 			...participant,
@@ -111,12 +105,7 @@ function drawGroup(participants: Participant[]) {
 }
 
 async function sendEmailtoParticipants(participants: Participant[], groupName: string) {
-	// Implement the logic to send emails to participants here
-	// This function should return a promise that resolves when the emails are sent
-	// For now, we will return a placeholder
-
 	const resend = new Resend(process.env.RESEND_API_KEY);
-
 
 	try {
 		await Promise.all(participants.map(participant => {

@@ -20,10 +20,8 @@ export default async function GrupoIdPage( { params }: { params: { id: string } 
   }
 
   const assignedParticipantId = data.participants.find((p) => authUser?.user?.email === p.email)?.assigned_to;
-  console.log(assignedParticipantId);
-  
-
   const assignedParticipant = data.participants.find((p) => p.id === assignedParticipantId);
+
   return (
     <main className="container mx-auto py-6">
      <Card className="w-full max-w-3xl mx-auto">
