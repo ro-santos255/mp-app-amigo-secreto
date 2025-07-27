@@ -11,12 +11,12 @@ import {
 } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { login } from "@/app/(auth)/login/actions";
+import { login, LoginState } from "@/app/(auth)/login/actions";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Loader, MessageCircle } from "lucide-react";
 
 export default function LoginForm() {
-  const [state, formAction, pending] = useActionState<any, FormData>(login, {
+  const [state, formAction, pending] = useActionState<LoginState, FormData>(login, {
     success: null,
     message: "",
   });

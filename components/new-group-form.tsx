@@ -62,7 +62,7 @@ export default function NewGroupForm({
   function removeParticipant(index: number) {
     setparticipants(participants.filter((_, i) => i !== index));
   }
-  function addParticipant(index: number) {
+  function addParticipant() {
     setparticipants(participants.concat({ name: "", email: "" }));
   }
   return (
