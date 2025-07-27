@@ -100,6 +100,8 @@ function drawGroup(participants: Participant[]) {
 
 		const assignedParticipant = availableParticipants[Math.floor(Math.random() * availableParticipants.length)]; 
 		selectedParticipants.push(assignedParticipant.id);
+		console.log(assignedParticipant.id);
+		
 
 		return {
 			...participant,
